@@ -34,8 +34,8 @@ df["NPI"] = ""
 base_file_name = os.path.splitext(os.path.basename(excel_file_path))[0]
 
 # Check for the existence of an intermediate file to resume from the last saved state
-intermediate_excel_path = f"C:\Users\truvi\workspace\CareHigh-Python Related Projects\NPIRegisterAPIData\DataTeam\{base_file_name}_intermediate_excel_file.xlsx"
-resume_info_path = f"C:\Users\truvi\workspace\CareHigh-Python Related Projects\NPIRegisterAPIData\DataTeam\{base_file_name}_resume_info.txt"
+intermediate_excel_path = f"C:\\Users\\truvi\\workspace\\CareHigh-Python Related Projects\\NPIRegisterAPIData\\DataTeam\\{base_file_name}_intermediate_excel_file.xlsx"
+resume_info_path = f"C:\\Users\\truvi\\workspace\\CareHigh-Python Related Projects\\NPIRegisterAPIData\\DataTeam\\{base_file_name}_resume_info.txt"
 
 resume_index = 0
 if os.path.exists(resume_info_path):
@@ -56,7 +56,7 @@ for index, row in df.iloc[resume_index:].iterrows():
         file.write(str(index + 1))
 
 # Save the final dataframe to Excel
-output_excel_path = f"C:\Users\truvi\workspace\CareHigh-Python Related Projects\NPIRegisterAPIData\DataTeam\{base_file_name}_output_excel_file.xlsx"
+output_excel_path = f"C:\\Users\\truvi\\workspace\\CareHigh-Python Related Projects\\NPIRegisterAPIData\\DataTeam\\{base_file_name}_output_excel_file.xlsx"
 df.to_excel(output_excel_path, index=False)
 
 # Remove the intermediate file as it's no longer needed
