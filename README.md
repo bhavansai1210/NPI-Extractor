@@ -9,6 +9,7 @@ This Python script is designed to fetch National Provider Identifier (NPI) data 
 - Python 3.x
 - pandas library
 - requests library
+- openpyxl library
 
 Install the required libraries using the following command:
 
