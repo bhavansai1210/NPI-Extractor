@@ -13,7 +13,7 @@ This Python script is designed to fetch National Provider Identifier (NPI) data 
 Install the required libraries using the following command:
 
 ```bash
-pip install pandas requests
+pip install pandas requests openpyxl
 ```
 
 ## Usage
@@ -46,3 +46,4 @@ Ensure internet connectivity is available for successful API requests.
 ## Dependencies
 - pandas
 - requests
+- openpyxl
