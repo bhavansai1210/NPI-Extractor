@@ -33,10 +33,11 @@ df["NPI"] = ""
 # Extract the base name of the loaded Excel file
 base_file_name = os.path.splitext(os.path.basename(excel_file_path))[0]
 
-# Check for the existence of an intermediate file to resume from the last saved state
-intermediate_excel_path = f"C:\\Users\\truvi\\workspace\\CareHigh-Python Related Projects\\NPIRegisterAPIData\\DataTeam\\{base_file_name}_intermediate_excel_file.xlsx"
-resume_info_path = f"C:\\Users\\truvi\\workspace\\CareHigh-Python Related Projects\\NPIRegisterAPIData\\DataTeam\\{base_file_name}_resume_info.txt"
+# Set paths for intermediate file and resume file based on the loaded Excel file
+intermediate_excel_path = os.path.join(os.path.dirname(excel_file_path), f"{base_file_name}_intermediate_excel_file.xlsx")
+resume_info_path = os.path.join(os.path.dirname(excel_file_path), f"{base_file_name}_resume_info.txt")
 
+# Check for the existence of an intermediate file to resume from the last saved state
 resume_index = 0
 if os.path.exists(resume_info_path):
     with open(resume_info_path, 'r') as file:
@@ -47,16 +48,12 @@ for index, row in df.iloc[resume_index:].iterrows():
     df.at[index, "NPI"] = npi
     print(f"Processed record {index + 1}/{len(df)} - Status: {status} - NPI: {npi}")
 
-    # Save the progress (current index) and the updated DataFrame to the intermediate Excel file
-    with pd.ExcelWriter(intermediate_excel_path, engine='xlsxwriter') as writer:
-        df.to_excel(writer, index=False)
-
     # Save the progress (current index) to a file
     with open(resume_info_path, 'w') as file:
         file.write(str(index + 1))
 
 # Save the final dataframe to Excel
-output_excel_path = f"C:\\Users\\truvi\\workspace\\CareHigh-Python Related Projects\\NPIRegisterAPIData\\DataTeam\\{base_file_name}_output_excel_file.xlsx"
+output_excel_path = os.path.join(os.path.dirname(excel_file_path), f"{base_file_name}_output_excel_file.xlsx")
 df.to_excel(output_excel_path, index=False)
 
 # Remove the intermediate file as it's no longer needed
